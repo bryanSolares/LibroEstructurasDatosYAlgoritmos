@@ -239,3 +239,154 @@ displayPoints(points)
 console.log('Despues de quitar');
 points.shift();
 displayPoints(points)
+
+// TODO: matrices en objetos
+
+
+// function weekTemps() {
+//     this.dataStore = []
+//     this.add = addTemp;
+//     this.average = averageTemp;
+// }
+
+// function addTemp(temp) {
+//     this.dataStore.push(temp)
+// }
+
+// function averageTemp() {
+//     let total = 0;
+//     for (const dt of this.dataStore) {
+//         total += dt
+//     }
+
+//     return total / this.dataStore.length;
+// }
+
+// let thisWeek = new weekTemps()
+// thisWeek.add(52)
+// thisWeek.add(55)
+// thisWeek.add(61)
+// thisWeek.add(65)
+// thisWeek.add(55)
+// thisWeek.add(50)
+// thisWeek.add(52)
+// thisWeek.add(49)
+// console.log(thisWeek.average().toFixed(2));
+
+//TODO: ejercicio
+
+// 1. Cree un objeto de calificaciones que almacene un conjunto de calificaciones de los estudiantes en un objeto.
+// Proporcionar unafunción para agregar una calificación y una función para mostrar el promedio de calificaciones del estudiante .
+
+function alumnoCalificaciones() {
+    this.calificaciones = []
+    this.agregarCalificacion = agregarCalificacion;
+    this.promedioCalificaciones = promedioCalificaciones;
+}
+
+function agregarCalificacion(calificacion) {
+    this.calificaciones.push(calificacion)
+}
+
+function promedioCalificaciones() {
+    let total = 0;
+    this.calificaciones.forEach(e => total += e)
+    return total / this.calificaciones.length;
+}
+
+let bryan = new alumnoCalificaciones()
+bryan.agregarCalificacion(80)
+bryan.agregarCalificacion(85)
+bryan.agregarCalificacion(90)
+bryan.agregarCalificacion(95)
+console.log(bryan.promedioCalificaciones());
+
+// 2.Almacene un conjunto de palabras en una matriz y muestre el contenido tanto hacia adelante como hacia atrás.
+let palabrasReverse = []
+
+function agregarPalabra(palabra) {
+    palabrasReverse.push(palabra)
+}
+
+function imprimir() {
+    console.log(palabrasReverse);
+    console.log(palabrasReverse.reverse());
+}
+
+agregarPalabra('hola')
+agregarPalabra('mundo')
+agregarPalabra('como')
+agregarPalabra('estan')
+imprimir()
+
+//3.Modifique el objeto WeekTemps en el capítulo para que almacene el valor de un mesdatos utilizando una matriz bidimensional.
+//Cree funciones para mostrar el promedio mensualedad, promedio de una semana específica y promedios de todas las semanas .
+
+function weekTemps() {
+    this.dataStore = [
+        [],
+        [],
+        [],
+        []
+    ]
+    this.add = addTemp;
+    this.averageMensual = averageTempMensual;
+    this.averageSemana = averageTempSemana;
+}
+
+function addTemp(semana, dia, temperatura) {
+    this.dataStore[semana - 1].push({
+        [dia]: temperatura
+    })
+}
+
+function averageTempMensual() {
+    let diasTotales = 0
+    let totalTempMensual = 0;
+
+    console.log(this.dataStore);
+    this.dataStore.forEach((semana) => {
+        semana.forEach((tempDia, index) => {
+            diasTotales++;
+            diasPorSemana++;
+            this.averageTempSemana(index + 1)
+        })
+    })
+    console.log(totalTempMensual / diasTotales, '<----- promedio mensual');
+}
+
+function averageTempSemana(semana) {
+    let diasPorSemana = 0;
+    let totalTempSemana = 0;
+    this.dataStore[semana - 1].forEach(e => {
+        totalTempSemana += Object.values(tempDia)[0]
+    })
+    console.log('Semana:', semana + 1, totalTempSemana / diasPorSemana);
+    diasPorSemana = 0
+    totalTempSemana = 0;
+}
+
+let thisWeek = new weekTemps()
+thisWeek.add(1, 1, 80)
+thisWeek.add(1, 2, 85)
+thisWeek.add(1, 3, 90)
+thisWeek.add(1, 4, 95)
+
+thisWeek.add(2, 1, 60)
+thisWeek.add(2, 2, 65)
+thisWeek.add(2, 3, 70)
+thisWeek.add(2, 4, 75)
+
+thisWeek.add(3, 1, 60)
+thisWeek.add(3, 2, 70)
+thisWeek.add(3, 3, 80)
+thisWeek.add(3, 4, 90)
+
+thisWeek.add(4, 1, 60)
+thisWeek.add(4, 2, 170)
+thisWeek.add(4, 3, 180)
+thisWeek.add(4, 4, 190)
+
+thisWeek.averageMensual()
+
+//4.Cree un objeto que almacene letras individuales en una matriz y tenga una función paramostrando las letras como una sola palabra.
