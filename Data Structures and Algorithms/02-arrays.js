@@ -412,3 +412,18 @@ thisWeek.averagePorSemana()
 thisWeek.averageSemanaEspecifica(1)
 
 //4.Cree un objeto que almacene letras individuales en una matriz y tenga una función paramostrando las letras como una sola palabra
+let letras = []
+
+function agregarLetra(letra) {
+    letras.push(letra)
+}
+
+function mostrarOracion() {
+    console.log(letras.join(''));
+}
+
+agregarLetra('H')
+agregarLetra('o')
+agregarLetra('l')
+agregarLetra('a')
+mostrarOracion()
