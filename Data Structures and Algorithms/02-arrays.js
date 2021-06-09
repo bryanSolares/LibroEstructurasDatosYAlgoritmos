@@ -331,62 +331,84 @@ function weekTemps() {
     ]
     this.add = addTemp;
     this.averageMensual = averageTempMensual;
-    this.averageSemana = averageTempSemana;
+    this.averagePorSemana = averageTempPorSemana;
+    this.averageSemanaEspecifica = averageTempSemana
 }
 
-function addTemp(semana, dia, temperatura) {
-    this.dataStore[semana - 1].push({
-        [dia]: temperatura
-    })
+function addTemp(semana, temperaturaDiaria) {
+    this.dataStore[semana - 1].push(
+        temperaturaDiaria
+    )
 }
 
 function averageTempMensual() {
-    let diasTotales = 0
-    let totalTempMensual = 0;
 
-    console.log(this.dataStore);
-    this.dataStore.forEach((semana) => {
-        semana.forEach((tempDia, index) => {
-            diasTotales++;
-            diasPorSemana++;
-            this.averageTempSemana(index + 1)
-        })
+    let totalTempMes = 0;
+    let totalDiasMes = 0;
+
+    this.dataStore.forEach(week => {
+        totalDiasMes += week.length;
+        totalTempMes += week.reduce((acu, act) => acu + act)
     })
-    console.log(totalTempMensual / diasTotales, '<----- promedio mensual');
+
+    console.log('Promedio Temperatura Mensual:', totalTempMes / totalDiasMes, 'Grados');
+
+}
+
+function averageTempPorSemana() {
+    let totalTempSemana = 0;
+    let totalDiasSemana = 0;
+
+    this.dataStore.forEach((week, indice) => {
+        totalDiasSemana += week.length;
+        totalTempSemana += week.reduce((acu, act) => acu + act)
+        console.log('Semana:', indice + 1, 'temperatura promedio:', totalTempSemana / totalDiasSemana);
+        totalDiasSemana = 0;
+        totalTempSemana = 0;
+    })
 }
 
 function averageTempSemana(semana) {
-    let diasPorSemana = 0;
+
     let totalTempSemana = 0;
-    this.dataStore[semana - 1].forEach(e => {
-        totalTempSemana += Object.values(tempDia)[0]
-    })
-    console.log('Semana:', semana + 1, totalTempSemana / diasPorSemana);
-    diasPorSemana = 0
-    totalTempSemana = 0;
+    let totalDiasSemana = 0;
+
+    if (semana > 0 && semana <= this.dataStore.length) {
+        this.dataStore[semana - 1].forEach(week => {
+            totalTempSemana += week
+            totalDiasSemana++
+        })
+        console.log('Promedio Temperatura en la semana:', semana, totalTempSemana / totalDiasSemana, 'Grados');
+    } else {
+        console.log('La semana indicada no esta en base de datos');
+    }
+
+
 }
 
 let thisWeek = new weekTemps()
-thisWeek.add(1, 1, 80)
-thisWeek.add(1, 2, 85)
-thisWeek.add(1, 3, 90)
-thisWeek.add(1, 4, 95)
+thisWeek.add(1, 80)
+thisWeek.add(1, 85)
+thisWeek.add(1, 90)
+thisWeek.add(1, 95)
 
-thisWeek.add(2, 1, 60)
-thisWeek.add(2, 2, 65)
-thisWeek.add(2, 3, 70)
-thisWeek.add(2, 4, 75)
+thisWeek.add(2, 60)
+thisWeek.add(2, 65)
+thisWeek.add(2, 70)
+thisWeek.add(2, 75)
 
-thisWeek.add(3, 1, 60)
-thisWeek.add(3, 2, 70)
-thisWeek.add(3, 3, 80)
-thisWeek.add(3, 4, 90)
+thisWeek.add(3, 60)
+thisWeek.add(3, 70)
+thisWeek.add(3, 80)
+thisWeek.add(3, 90)
 
-thisWeek.add(4, 1, 60)
-thisWeek.add(4, 2, 170)
-thisWeek.add(4, 3, 180)
-thisWeek.add(4, 4, 190)
+thisWeek.add(4, 60)
+thisWeek.add(4, 170)
+thisWeek.add(4, 180)
+thisWeek.add(4, 190)
 
 thisWeek.averageMensual()
+thisWeek.averagePorSemana()
+thisWeek.averageSemanaEspecifica(1)
 
-//4.Cree un objeto que almacene letras individuales en una matriz y tenga una función paramostrando las letras como una sola palabra.
+//4.Cree un objeto que almacene letras individuales en una matriz y tenga una función paramostrando las letras como una sola palabra
