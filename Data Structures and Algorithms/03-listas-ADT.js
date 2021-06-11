@@ -1,4 +1,4 @@
-'use strict'
+"use strict";
 // TODO: lista de tipos de datos Abstractos
 
 function List() {
@@ -24,7 +24,7 @@ function List() {
 }
 
 function append(element) {
-  this.dataStore[this.listSize++] = element
+  this.dataStore[this.listSize++] = element;
 }
 
 function find(element) {
@@ -33,17 +33,17 @@ function find(element) {
       return i;
     }
   }
-  return -1
+  return -1;
 }
 
 function remove(element) {
-  let foundAt = this.find(element)
+  let foundAt = this.find(element);
   if (foundAt > -1) {
-    this.dataStore.splice(foundAt, 1)
-      --this.listSize;
+    this.dataStore.splice(foundAt, 1);
+    --this.listSize;
     return true;
   }
-  return false
+  return false;
 }
 
 function length() {
@@ -55,10 +55,10 @@ function toString() {
 }
 
 function insert(elemnet, after) {
-  let insertPos = this.find(after)
+  let insertPos = this.find(after);
   if (insertPos > -1) {
-    this.dataStore.splice(insertPos + 1, 0, elemnet)
-      ++this.listSize
+    this.dataStore.splice(insertPos + 1, 0, elemnet);
+    ++this.listSize;
     return true;
   }
 
@@ -66,9 +66,9 @@ function insert(elemnet, after) {
 }
 
 function clear() {
-  delete this.dataStore
-  this.dataStore = []
-  this.listSize = this.pos = 0
+  delete this.dataStore;
+  this.dataStore = [];
+  this.listSize = this.pos = 0;
 }
 
 function contains(element) {
@@ -112,11 +112,10 @@ function getElement() {
   return this.dataStore[this.pos];
 }
 
-
-let nombres = new List()
-nombres.append('Genesis')
-nombres.append('Amber')
-nombres.append('Rocio')
+let nombres = new List();
+nombres.append("Genesis");
+nombres.append("Amber");
+nombres.append("Rocio");
 //const element = this.dataStore[i];
 // console.log(nombres.toString());
 // nombres.remove('Amber')
@@ -126,6 +125,26 @@ nombres.append('Rocio')
 // nombres.next()
 // console.log(nombres.getElement());
 
-for (nombres.front(); nombres.currPos() < nombres.length(); nombres.next()) {
-  console.log(nombres.getElement());
-}
+// for (nombres.front(); nombres.currPos() < nombres.length(); nombres.next()) {
+//   console.log(nombres.getElement());
+// }
+
+// let movies = read(films.txt).split("\n");
+
+// function createArr(archivo) {
+//   let arr = read(archivo).split("\n");
+//   for (let i = 0; i < arr.length; i++) {
+//     arr[i] = arr[i].trim();
+//   }
+
+//   return arr;
+// }
+
+// var movieList = new List();
+// for (let i = 0; i < movies.length; i++) {
+//   movieList.append(movies[i]);
+// }
+
+// function displayList(){
+//   for(list.from){}
+// }
