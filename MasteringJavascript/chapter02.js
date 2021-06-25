@@ -77,3 +77,49 @@ parseRequest(generateDataForComposes, validateDataForAge, errorHandlerForAge)
 
 //ALCANCES
 //ALCANCES GLOBALES
+//Las variables globables pueden ser modificadas desde cualquier ambito
+let a = 1;
+function scopeTest(){
+  a = 2;
+  console.log(a)
+}
+
+console.log(a)
+scopeTest()
+console.log(a)
+
+//ALCANCE LOCAL
+let scopeName = 'Global';
+function showScopeName(){
+  let scopeName = 'Local';
+  console.log(scopeName);
+}
+
+console.log(scopeName);
+showScopeName();
+console.log(scopeName);
+
+let aa = 1;
+//patron IIFE patron de funcion invocada inmediatamente 
+(function(){
+  let aa = 2;
+  console.log(a)
+})();
+
+console.log(aa);
+
+//Error
+/*functionOne();
+let functionOne = function(){
+  console.log('Function One');
+}*/
+
+//No error
+functionTwo();
+function functionTwo(){
+  console.log('Function Two');
+}
+
+
+
+
