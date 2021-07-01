@@ -166,3 +166,97 @@ function externalFuncion() {
 
 externalFuncion();
 copy();
+
+//TODO: CLOSURES AVANZADOS
+let variableExterior = "exterior";
+let variableCopy;
+function primeraFuncion() {
+  let variablePrimeraFuncion = "Primera Funcion Variable";
+  function segundaFuncionInterna(parametro) {
+    console.log(variableExterior);
+    console.log(variablePrimeraFuncion);
+    console.log(parametro);
+    console.log(magic);
+  }
+  variableCopy = segundaFuncionInterna;
+}
+
+//console.log(magic);
+let magic = "Magia";
+primeraFuncion();
+variableCopy();
+
+// TODO: patrones populares para los closures
+
+//temporizadores y devoluciones de llamada
+function delay(message) {
+  setTimeout(function timerFunction() {
+    console.log(message);
+  }, 1000);
+}
+
+delay("Hello World");
+
+// TODO: variables privadas
+function PrivateTest() {
+  let points = 0;
+  this.getPoints = function () {
+    return points;
+  };
+
+  this.score = function () {
+    points++;
+  };
+}
+
+let variablePrivada = new PrivateTest();
+variablePrivada.score();
+console.log(variablePrivada.points);
+console.log(variablePrivada.getPoints());
+
+for (let i = 0; i < 5; i++) {
+  (function (j) {
+    setTimeout(() => {
+      console.log(j);
+    }, j * 100);
+  })(i);
+}
+
+// TODO modulos
+// requisitos: debe hacer funcion de cierre exterior que se ejecute al menos una vez  | debe devolver al menos una funcion interna.
+let superModule = (function () {
+  let secret = "supersecretkey";
+  let password = "nuke";
+
+  function getSecret() {
+    console.log(secret);
+  }
+
+  function getPassword() {
+    console.log(password);
+  }
+
+  return {
+    getSecret,
+    getPassword,
+  };
+})();
+
+superModule.getSecret();
+superModule.getPassword();
+
+//Consideraciones sugeridas
+//1. Usar declaraciones de funcion en lugar de expresiones de funciones
+//2. No declarar funciones en bloques que no sean de funcion (while, if, for,
+//etc.)
+ 
+
+
+
+
+
+
+
+
+
+
