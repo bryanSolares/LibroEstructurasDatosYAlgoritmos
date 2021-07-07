@@ -106,9 +106,39 @@ let patronOcurrencias = /behaviou?r/;
 console.log(patronOcurrencias.test('behaviour'));
 console.log(patronOcurrencias.test('behavior'));
 
+console.log(/'\d+'/.test('123'));
+// \d = todos los digitos de 0-9
+//  + = que tenga una o mas coincidencias
+//  ' = coincidencias de caracteres literales
 
+let heartyLaugth = /Ha+(Ha+)+/i;
+console.log(heartyLaugth.test('HaHaHaHaHaHaHaaaaaaaaaaaaaaaaa'));
 
+//  H = coincidencia de caracteres literal
+// a+ = 1 o mas coincidencias del caracter 'a'
+//  ( = inicio del grupo de expresion
+//  H = coincidencia de caracter literal
+// a+ = 1 o mas coincidencias del caracter 'a'
+//  ) = final de grupo de expresion
+//  + = 1 o mas coincidencias del grupo de expresion (Ha+)
 
+// \b = marca indica un espacio
+console.log(/gato/.test('un gato negro'));
+console.log(/\bgato/.test('un gato negro'));
+console.log(/gato\b/.test('un gato negro'));
+console.log(/\bgato\b/.test('un gatonegro'));
+console.log(/\bcat\b/.test('concatenar'));
+
+let matchExec = /\d+/.exec('Hay 100 formas de hacer esto');
+console.log(matchExec)
+
+//TODO alternativas - O = |
+// /(ab)|(cd)+/
+
+//TODO principio y fin
+// /^prueba/ = indica que solo tiene que aparecer al inicio
+// /prueba$/ = indica que solo tiene que aparecer al final
+// /^prueba$/ = el patron debera abarcar toda la cadena
 
 
 
