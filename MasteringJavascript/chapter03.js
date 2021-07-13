@@ -140,6 +140,65 @@ console.log(matchExec)
 // /prueba$/ = indica que solo tiene que aparecer al final
 // /^prueba$/ = el patron debera abarcar toda la cadena
 
+//TODO cuantificadores CODICIOSO Y PEREZOSOS
+//Se agrega un signo ? para hacer el patron perezoso
+
+function trim (str){
+  return (str || "").replace(/^\s+|\s+$/g,'');
+}
+
+//TODO MATRICES
+//las matrices pueden contener cualquier tipo de elemento
+let arr = new Array(1,2,3);
+let arr2 = Array(1,2,3);
+let arr3 = [1,2,3];
+let arrCualquierTipo = [
+  'texto', 42.0, true, false, null, undefined, ['sub','matriz'],{'clave': 'valor'}, NaN
+]
+
+//para buscar un elemento se puede hacer buscando el indice del elemento
+console.log(arrCualquierTipo[1]);
+
+//reduccion de los elemento de la matriz
+arrCualquierTipo.length = 0;
+console.log(arrCualquierTipo.length);
+
+//para recorrer una matriz se puede hacer con un bucle for o forEach
+//hay diferentes metodos que ofrecen extremas utilidades
+
+//TODO: concat = une dos o mas matrices, generando una nueva matriz
+//TODO: join = une dos o mas matrices a partir de un patron buscado, resultando en un string
+//TODO: pop = elimina y devuelve el ultimo elemento de una matriz
+//TODO: push = agregar un elemento al final de la matriz y devuelve la nueva longitud
+//TODO: shift = eliminar el primer elemento de una matriz y devuelve el elemento eliminado
+//TODO: unshift = agregar uno o mas elementos al inicio de la matriz y devuelve la nueva longitud
+//TODO: reverse = traspone los elementos de una matriz
+//TODO: sort = ordena los elementos de una matriz 
+//TODO: indexOf = busca un elemento deseado en la matriz y devuelve la posicion de la primera
+//coincidencia
+//TODO: lastIndexOf = busca un elemento deseado en la matriz de atras hacia adelante y devuelve la
+//posicion de la primera coincidencia
+//se sugiere como libreria util usar UnderScore.js
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
