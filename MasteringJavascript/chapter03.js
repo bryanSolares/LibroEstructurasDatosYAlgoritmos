@@ -181,14 +181,42 @@ console.log(arrCualquierTipo.length);
 //se sugiere como libreria util usar UnderScore.js
 
 
+//TODO MAPS = se define por un dato que tiene clave y valor let redes = new Map();
+let redes = new Map();
+redes.set('facebook', 'Mark');
+redes.set('google', 'Larry');
+console.log(redes.size);
+console.log(redes.get('twitter'));
+console.log(redes.has('yahoo'));
 
+for(let [key, value] of redes){
+  console.log(key, value);
+}
 
+//TODO SET'S = los valores tienen que ser unicos
+let mySet = new Set();
+mySet.add(1);
+mySet.add('Hola');
+mySet.add('foo');
 
+console.log(mySet.has(1));
+console.log(mySet.delete('foo'));
+console.log(mySet.size);
 
+for(let item of mySet) console.log(item);
 
+//TODO RECOMENDACIONES
 
+//INCORRECTO
+let elementos = new Array();
+//CORRECTO
+let elementos2 = [];
 
-
+const myL = [];
+//INCORRECTO
+myL[myL.length] = 'pushElement';
+//CORRECTO
+myL.push('pushElement');
 
 
 
