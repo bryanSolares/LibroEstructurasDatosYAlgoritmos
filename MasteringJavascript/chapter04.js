@@ -78,7 +78,7 @@ Player3.prototype.dateCeleb = function(){
   this.hasCelebGirldFriend = true;
 }
 
-Player3.fixEyes = function(){
+Player3.prototype.fixEyes = function(){
   this.wearGlasses = false;
 }
 
@@ -90,9 +90,14 @@ Player3.noOfPlayers = 0;
   let golfista = new Player3('Pete', 'Golf', 32, 'EE.UU');
   console.log('Hasta ahora hay'+ Player3.noOfPlayers + ' en el gremio');
 
-  cricketet.fixEyes();
-  golfista.fixEyes();
+  console.log(cricketet);
+  console.log(golfista);
+  console.log();
+  console.log(Player3);
+  console.log(Player3.prototype);
 
+ cricketet.fixEyes();
+  golfista.fixEyes();
   cricketet.endorses = 'Otra marca';
 
   Player3.prototype.fixEyes = function(){
@@ -103,6 +108,43 @@ Player3.noOfPlayers = 0;
     this.batPreference = 'indeciso';
   }
 })();
+
+//TODO HERENCIA
+//LO QUE NO ES HERENCIA
+function Persona(){
+  Persona.prototype.llorar = function(){
+    console.log('Llorando');
+  }
+}
+
+function Ninio(){}
+Ninio.prototype = {llorar: Persona.prototype.llorar};
+let unNinio = new Ninio();
+console.log(unNinio instanceof Ninio);
+console.log(unNinio instanceof Persona);
+console.log(unNinio instanceof Object);
+
+//LO QUE ES HERENCIA
+Ninio.prototype = new Persona();
+let unNinio2 = new Ninio();
+console.log(unNinio2 instanceof Ninio);
+console.log(unNinio2 instanceof Persona);
+console.log(unNinio2 instanceof Object);
+
+function Empleado(){
+  this.nombre = '';
+  this.depto = 'Ninguno';
+  this.salario = 0.0;
+}
+
+function Administrador(){
+  Empleado.call(this); // es como llamar a super en java
+  this.reportes = [];
+}
+
+Administrador.prototype = Object.create(Empleado.prototype);
+
+
 
 
 
