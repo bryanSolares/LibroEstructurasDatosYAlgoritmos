@@ -1,0 +1,19 @@
+
+//Patrones en JAVASCRIPT
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

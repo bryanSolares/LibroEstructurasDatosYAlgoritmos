@@ -1,3 +1,6 @@
+let _ = require('underscore');
+
+
 //TODO Programacion Orientada a Objetos
 function Player(){}
 
@@ -141,8 +144,158 @@ function Administrador(){
   Empleado.call(this); // es como llamar a super en java
   this.reportes = [];
 }
-
 Administrador.prototype = Object.create(Empleado.prototype);
+
+function IndividualContributor(){
+  Empleado.call(this);
+  this.active_projects = [];
+}
+IndividualContributor.prototype = Object.create(Empleado.prototype);
+
+function TeamLead(){
+  Administrador.call(this);
+  this.depto = 'Software';
+  this.salario = 10000;
+}
+TeamLead.prototype = Object.create(Administrador.prototype);
+
+function Ingenier(){
+  TeamLead.call(this);
+  this.depto = 'Javascript';
+  this.desktop_id = '8822';
+  this.salario = 80000;
+}
+Ingenier.prototype = Object.create(TeamLead.prototype);
+
+let genericEmployee = new Empleado();
+console.log(genericEmployee);
+
+let Karen = new Administrador();
+Karen.nombre = 'Karen';
+Karen.reportes = [1,2,3];
+console.log(Karen);
+
+let Jason = new TeamLead();
+Jason.nombre = 'Jason';
+console.log(Jason);
+
+String.prototype.reverse = function(){ //extendiendo funcionalidades a los objetos nativos, como se esta haciendo mediante prototype se hace globalmente el cambio
+  return Array.prototype.reverse.apply(this.split('')).join('');
+}
+
+let str = 'JavaScript';
+console.log(str.reverse());
+
+//TODO getters and setters
+//
+let persona = {
+  nombre : 'Albert',
+  apellido : 'Einstein',
+  setApellido: function(_apellido){
+    this.apellido = _apellido;
+  },
+  setNombre: function(_nombre){
+    this.nombre = _nombre;
+  },
+  getNombreCompleto: function(){
+    return this.nombre + ' ' + this.apellido;
+  }
+};
+
+persona.setNombre('Issac');
+persona.setApellido('Newton');
+console.log(persona.getNombreCompleto());
+
+//TODO mejoras en ECMAScript5
+let persona2 = {
+  nombre: 'Albert',
+  apellido: 'Einstein',
+  get nombreCompleto(){
+    return this.nombre + ' ' + this.apellido;
+  },
+  set darNombre(_nombre){
+    let palabra = _nombre.toString().split(' ');
+    this.nombre = palabra[0];
+    this.apellido = palabra[1];
+  }
+};
+persona2.darNombre = 'Issac Newton';
+console.log(persona2.nombre);
+console.log(persona2.apellido);
+console.log(persona2.nombreCompleto);
+
+//Otra forma de hacer lo anterior
+let persona3 = {
+  nombre: 'Albert',
+  apellido: 'Einstein'
+}
+
+Object.defineProperty(persona3, 'nombreCompleto', {
+  get: function(){
+    return this.nombre + ' ' + this.apellido;
+  },
+  set: function(nombreCompleto){
+    let palabra = nombreCompleto.toString().split(' ');
+    this.nombre = palabra[0];
+    this.apellido = palabra[1];
+  }
+});
+
+persona3.nombreCompleto = 'Issac Newton';
+console.log(persona3.nombre);
+console.log(persona3.apellido);
+console.log(persona3.nombreCompleto);
+
+//Utilidades en underscore para procesar objetos
+
+//TODO keys = solo recuper lo propio del objeto
+let testObj = {
+  nombre: 'Albert',
+  edad: 90, 
+  profesion: 'Fisico'
+};
+
+console.log(_.keys(testObj));
+
+//TODO allKeys = todo, incluyendo lo del prototype
+function Cientifico(){
+  this.nombre = 'Albert';
+  this.edad = 80;
+}
+
+Cientifico.prototype.casado = true;
+
+let cientifico = new Cientifico();
+console.log(_.keys(cientifico));
+console.log(_.allKeys(cientifico));
+
+//TODO values = Recupera valores de solo el objeto
+console.log(_.values(cientifico));
+
+//TODO mapObject = transforma el valor de cada propiedad en el objeto
+let lst = _.mapObject(cientifico, (valor, clave)=>{
+  console.log(clave, '--->', valor);
+  if(clave === 'edad'){
+    return valor + 10;
+  }else{
+    return valor;
+  }
+});
+
+console.log(lst);
+
+//TODO pick = devuelve una copia solo con las claves indicadas
+console.log(_.pick(testObj, 'nombre', 'edad'));
+console.log(_.pick(testObj, (valor, clave, object)=> _.isNumber(valor)));
+
+//TODO omit = devuelve lo opuesto que pick
+console.log(_.omit(testObj, 'nombre','edad'));
+console.log(_.omit(testObj, (valor, clave, object)=> _.isNumber(valor)));
+
+
+
+
+
 
 
 
